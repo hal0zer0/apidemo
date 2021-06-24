@@ -7,7 +7,6 @@ class UserSerializer(serializers.ModelSerializer):
     organization = serializers.StringRelatedField(many=False, read_only=True)
     class Meta:
         model = User
-        #fields = ['url', 'username', 'email', 'is_staff']
         fields = '__all__'
 
 
@@ -15,6 +14,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
         fields = ['name']
+
 
 class GroupViewSet(viewsets.ModelViewSet):
     http_method_names = ['get']
