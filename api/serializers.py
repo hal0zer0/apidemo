@@ -1,11 +1,14 @@
-from rest_framework import routers, serializers, viewsets
+from rest_framework import routers, serializers, viewsets, filters
 from django.contrib.auth.models import Group
 from api.models import User
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    organization = serializers.StringRelatedField(many=False, read_only=True)
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'is_staff']
+        #fields = ['url', 'username', 'email', 'is_staff']
+        fields = '__all__'
+
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -19,8 +22,16 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name']
     serializer_class = UserSerializer
 
     def get_queryset(self):
-        return User.objects.filter(organization=self.request.user.organization)
+        # I'm guessing there's a better way to filter by group
+        if self.request.user.groups.filter(name="administrator") or self.request.user.groups.filter(name="viewer"):
+            return User.objects.filter(organization=self.request.user.organization)
+        else:
+            return User.objects.get(email=self.request.user.email)
+
+
 

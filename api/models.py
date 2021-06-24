@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 from gettext import gettext as _
 
 # Create your models here.
@@ -21,12 +21,13 @@ class CustomUserManager(BaseUserManager):
         return user
 
 
+
 class User(AbstractUser):
     id = models.AutoField(primary_key=True)
     email = models.EmailField(_('email address'), unique=True)
     name = models.CharField(max_length=32)
     phone = models.CharField(max_length=10)
-    organization = models.ForeignKey('Organization', on_delete=models.CASCADE, blank=True, null=True)
+    organization = models.ForeignKey('Organization', related_name='users', on_delete=models.CASCADE, blank=True, null=True)
     birthdate = models.DateField(null=True, blank=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
