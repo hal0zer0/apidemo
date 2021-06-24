@@ -8,6 +8,14 @@ Of the project goals, the following have been completed:
 3. api/auth/login fully implemented
 4. api/auth/groups fully implemented
 5. api/users fully implemented with search and filter to spec
+6. api/users/{id} returns user details
+
+## Using this application
+You have multiple user choices for login, to confirm the permissions system
+- **apiadmin@youmighthireme.com** is an Administrator with Good Inc
+- **apiviewer@youmighthireme.com** is a Viewer with Good Inc
+- **apiuser@youmighthireme.com** is a User with Good Inc
+- **eviladmin@evilinc.com** is an Administrator with Evil Inc
 
 ## Notes on "Production" environment
 I wasn't certain quite how deeply to go into production mode.  In a "real" application, I'd probably run Nginx and gunicorn.  I'd also use a real database and possibly something like S3 to store my static files.  

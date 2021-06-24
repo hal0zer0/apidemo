@@ -23,6 +23,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    http_method_names = ['get', 'post']
     filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend]
     search_fields = ['name', 'email']
     filterset_fields = ['phone']
@@ -34,6 +35,5 @@ class UserViewSet(viewsets.ModelViewSet):
             return User.objects.filter(organization=self.request.user.organization)
         else:
             return User.objects.get(email=self.request.user.email)
-
 
 
