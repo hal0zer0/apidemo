@@ -38,6 +38,9 @@ REST_FRAMEWORK = {
     ],
 }
 
+LOGIN_REDIRECT_URL="/"
+AUTH_USER_MODEL = 'api.User'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
