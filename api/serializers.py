@@ -1,5 +1,6 @@
 from rest_framework import routers, serializers, viewsets, filters
 from django.contrib.auth.models import Group
+import django_filters.rest_framework
 from api.models import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -22,8 +23,9 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['name']
+    filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend]
+    search_fields = ['name', 'email']
+    filterset_fields = ['phone']
     serializer_class = UserSerializer
 
     def get_queryset(self):
