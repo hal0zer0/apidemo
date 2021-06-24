@@ -4,10 +4,10 @@
 # To be honest, personally I'm not a huge fan of the environment variable method but it's what the
 # Django developers recommend
 #
+import os
+from pathlib import Path
 
 print("Using PRODUCTION settings")
-
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +22,10 @@ SECRET_KEY = 'django-insecure-z3$cnzm0x8ah%z7e1bmqiy2wga=f-+^+0hrlx=!wum!fu0j5$%
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+print(STATIC_ROOT)
+STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

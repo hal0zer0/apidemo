@@ -13,6 +13,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['name']
 
 class GroupViewSet(viewsets.ModelViewSet):
+    http_method_names = ['get']
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
