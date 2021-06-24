@@ -2,7 +2,7 @@ from rest_framework import routers, serializers, viewsets, filters
 from django.contrib.auth.models import Group
 import django_filters.rest_framework
 from api.models import User
-from django.http.response import HttpResponseForbidden
+from django.http.response import HttpResponseForbidden, HttpResponse
 
 class UserSerializer(serializers.ModelSerializer):
     organization = serializers.StringRelatedField(many=False, read_only=True)
@@ -42,7 +42,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    http_method_names = ['get', 'post']
+    http_method_names = ['get', 'post', 'patch']
     filter_backends = [filters.SearchFilter, django_filters.rest_framework.DjangoFilterBackend]
     search_fields = ['name', 'email']
     filterset_fields = ['phone']
@@ -54,6 +54,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return User.objects.filter(organization=self.request.user.organization)
         else:
             return User.objects.get(email=self.request.user.email)
+
 
 
 
