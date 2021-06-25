@@ -21,7 +21,7 @@ SECRET_KEY = 'django-insecure-z3$cnzm0x8ah%z7e1bmqiy2wga=f-+^+0hrlx=!wum!fu0j5$%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 print(STATIC_ROOT)
@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'apiassignment.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 }
 

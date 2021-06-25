@@ -13,6 +13,13 @@ Of the project goals, the following have been completed:
 
 
 ## Using this application
+For development settings, set the environment variable 
+`DJANGO_SETTINGS_MODULE=dev_settings`
+Without that, it will default to production settings (see below)
+
+I have included a Dockerfile for production, though there is currently very little difference in the setup (see below) as there was no specification for what prod should look like.
+You can build the container with something like `docker build -t apiassignment:0.1 .` and run with `docker run -p 8000:8000 apiassignment:0.1`
+
 You have multiple user choices for login, to confirm the permissions system
 - **apiadmin@youmighthireme.com** is an Administrator with Good Inc
 - **apiviewer@youmighthireme.com** is a Viewer with Good Inc
@@ -27,4 +34,8 @@ I wasn't certain quite how deeply to go into production mode.  In a "real" appli
 As it is, with no particular specs on how the production environment is meant to be, I simply used Django's recommended DJANGO_SETTINGS_MODULE environment variable to determine which settings file to use.  In this assignment, there's little difference between the two.
 
 "Real" production environments would also have much improved security, such as removing the secrets from the settings files and verifying we pass Django's deployment checklist.
- 
+
+## Known caveats & weak points
+Working on this project has highlighted a few gaps for me, such as using Groups for API permissions management.  My prior projects of this type had simpler authorization needs, and I suspect I could use some more practice in this regard.  
+
+Similarly, it seems my git-flow is a bit rusty as I encountered some versioning conflicts.  I'll be studying where I went wrong.  
