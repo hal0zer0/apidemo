@@ -23,8 +23,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-print(STATIC_ROOT)
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#print(STATIC_ROOT)
 STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
